@@ -63,6 +63,11 @@ class BookController:
         except Book.DoesNotExist:
             print("Книга с таким ID не найдена.")
 
+    # Удалить пост по - id
+    @classmethod
+    def delete(cls, id):
+        Book.delete_by_id(id)
+
 
 if __name__ == "__main__":
     # Добавим тестовые данные
