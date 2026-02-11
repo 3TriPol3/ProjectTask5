@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 from Controllers.BookController import BookController
+from Views.DeleteView import DeleteView
 
 
 class BookView(Tk):
@@ -106,6 +107,14 @@ class BookView(Tk):
         # Переменная для хранения ID выбранной книги
         self.selected_id = None
 
+        # Фрейм окна удаления книг
+        self.delete_frame = ttk.Frame(self, padding=[10])
+        self.delete_frame.pack(anchor=CENTER, padx=5, pady=5)
+
+        # Кнопка перехода в окно удаления книг
+        self.button_delete = ttk.Button(self.delete_frame, text="Удаление книг", command=self.delete_window)
+        self.button_delete.grid(row=1, column=2, padx=5, sticky="s")
+
     # Обновление данных в таблице
     def table(self):
         for item in self.table_data.get_children():
@@ -138,6 +147,10 @@ class BookView(Tk):
             self.clear_add_fields()
         except ValueError:
             pass
+
+    def delete_window(self):
+        window = DeleteView()
+        self.destroy()
 
     # Поиск книги по автору или названию
     def search_books(self):
