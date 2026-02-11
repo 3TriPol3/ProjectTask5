@@ -64,7 +64,7 @@ class DeleteView(Tk):
             self.table_data.delete(item)
         self.el = []
         for el in BookController.get():
-            self.el.append((el.id, el.category, el.amount, el.type, el.date, el.description))
+            self.el.append((el.id, el.title, el.author, el.genre, el.year, el.status))
         # Вывод данных из БД в таблицу
         for item in self.el:
             self.table_data.insert("", END, values=item)
