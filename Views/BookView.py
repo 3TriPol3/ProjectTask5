@@ -111,7 +111,7 @@ class BookView(Tk):
         for item in self.table_data.get_children():
             self.table_data.delete(item)
 
-        for book in BookController.get_all():
+        for book in BookController.get():
             self.table_data.insert("", END, values=(
                 book.id,
                 book.title,

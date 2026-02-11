@@ -2,8 +2,10 @@ from Models.Book import Book
 
 class BookController:
     '''
-    Контроллер для управления книгами.
-    Методы: добавить книгу, найти по автору/названию, выдать книгу, вернуть книгу.
+    добавить книгу,
+    найти по автору/названию,
+    выдать книгу,
+    вернуть книгу.
     '''
 
     # Добавить книгу
@@ -62,24 +64,27 @@ class BookController:
             print("Книга с таким ID не найдена.")
 
 
-# Пример использования (для тестирования)
 if __name__ == "__main__":
     # Добавим тестовые данные
+    BookController.add(  # Добавить Книгу в таблицу
+        title="Мастер и Маргарита",
+        author="М. Булгаков",
+        genre="Роман",
+        year=1966
+    )
+
     # BookController.add("Мастер и Маргарита", "М. Булгаков", "Роман", 1966)
     # BookController.add("Преступление и наказание", "Ф. Достоевский", "Роман", 1866)
 
     # Вывести все книги
-    print("Все книги:")
-    for book in BookController.get_all():
-        print(f"{book.id}. '{book.title}' — {book.author} ({book.year}), {book.genre}, статус: {book.status}")
+    for item in BookController.get():  # Выводит список записей из таблицы БД
+        print(item.title, item.author, item.genre, item.year, item.status)
 
     # Поиск по автору
-    print("Поиск по автору 'Булгаков':")
-    for book in BookController.find_by_author("Булгаков"):
-        print(f"'{book.title}' — {book.author}")
+    for item in BookController.find_by_author("Булгаков"):
+        print(f"'{item.title}' — {item.author}")
 
     # Выдать книгу
     BookController.issue_book(1)
-
     # Вернуть книгу
     BookController.return_book(1)
